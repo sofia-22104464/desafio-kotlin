@@ -1,6 +1,5 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
-import pt.ulusofona.cm.kotlin.challenge.exceptions.AlterarPosicaoException
 import pt.ulusofona.cm.kotlin.challenge.exceptions.MenorDeIdadeException
 import pt.ulusofona.cm.kotlin.challenge.exceptions.PessoaSemCartaException
 import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoNaoEncontradoException
@@ -10,23 +9,23 @@ import java.time.ZoneId
 import java.util.*
 
 
-class Pessoa(private var nome: String, private var dataDeNascimento: Date) {
-    private lateinit var veiculos: ArrayList<Veiculo>
-    private var carta: Carta? = null
-    private lateinit var posicao: Posicao
+class Pessoa(var nome: String, var dataDeNascimento: Date) {
+    lateinit var veiculos: ArrayList<Veiculo>
+    var carta: Carta? = null
+    lateinit var posicao: Posicao
 
     fun comprarVeiculo(veiculo: Veiculo){
         val localDate = LocalDate.now()
         val localDateTime = localDate.atStartOfDay()
         val data = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant())
-        veiculo.setDataDeAquisicao(data)
+        veiculo.dataDeAquisicao= data
         veiculos.add(veiculo)
     }
 
     fun pesquisarVeiculo(identificador: String): Veiculo{
         var count= 0
         while(count < veiculos.size){
-            if(veiculos[count].getIdentificador() == identificador){
+            if(veiculos[count].identificador == identificador){
                 return veiculos[count]
             }
             count++
@@ -49,14 +48,14 @@ class Pessoa(private var nome: String, private var dataDeNascimento: Date) {
                 throw PessoaSemCartaException("$nome não tem carta para conduzir o veículo indicado")
             }else{
                 var carro= veiculo as Carro
-                carro.getMotor().ligar()
-                carro.getPosicao().alterarPosicaoPara(x,y)
+                carro.motor.ligar()
+                carro.posicao.alterarPosicaoPara(x,y)
                 posicao.alterarPosicaoPara(x,y)
-                carro.getMotor().desligar()
+                carro.motor.desligar()
                 veiculos.add(carro)
             }
         }else{
-            veiculo.getPosicao().alterarPosicaoPara(x,y)
+            veiculo.posicao.alterarPosicaoPara(x,y)
             posicao.alterarPosicaoPara(x,y)
             veiculos.add(veiculo)
         }

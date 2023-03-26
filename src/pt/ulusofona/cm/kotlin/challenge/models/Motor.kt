@@ -7,14 +7,6 @@ import pt.ulusofona.cm.kotlin.challenge.interfaces.Ligavel
 class Motor(private var cavalos: Int, private var cilindrada: Int): Ligavel {
     private var ligado: Boolean = false
 
-    fun getLigado(): Boolean{
-        return ligado
-    }
-
-    fun setLigado(ligado: Boolean){
-        this.ligado= ligado
-    }
-
     override fun ligar() {
         if(ligado){
             throw VeiculoLigadoException("O veiculo já se encontra ligado!")
