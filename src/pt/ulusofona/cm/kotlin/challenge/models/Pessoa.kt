@@ -3,13 +3,13 @@ package pt.ulusofona.cm.kotlin.challenge.models
 import pt.ulusofona.cm.kotlin.challenge.exceptions.MenorDeIdadeException
 import pt.ulusofona.cm.kotlin.challenge.exceptions.PessoaSemCartaException
 import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoNaoEncontradoException
+import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
 import java.time.LocalDate
 import java.time.Period
-import java.time.ZoneId
 import java.util.*
 
 
-class Pessoa(var nome: String, var dataDeNascimento: Date) {
+class Pessoa(var nome: String, var dataDeNascimento: Date): Movimentavel {
     var veiculos = ArrayList<Veiculo>()
     var carta: Carta? = null
     var posicao= Posicao(0,0)
@@ -47,14 +47,14 @@ class Pessoa(var nome: String, var dataDeNascimento: Date) {
             }else{
                 var carro= veiculo as Carro
                 carro.motor.ligar()
-                carro.posicao.alterarPosicaoPara(x,y)
-                posicao.alterarPosicaoPara(x,y)
+                carro.moverPara(x,y)
+                moverPara(x,y)
                 carro.motor.desligar()
                 veiculos.add(carro)
             }
         }else{
-            veiculo.posicao.alterarPosicaoPara(x,y)
-            posicao.alterarPosicaoPara(x,y)
+            veiculo.moverPara(x,y)
+            moverPara(x,y)
             veiculos.add(veiculo)
         }
     }
@@ -69,6 +69,10 @@ class Pessoa(var nome: String, var dataDeNascimento: Date) {
         }else{
             this.carta= Carta()
         }
+    }
+
+    override fun moverPara(x: Int, y: Int) {
+        posicao.alterarPosicaoPara(x,y)
     }
 
     override fun toString(): String{

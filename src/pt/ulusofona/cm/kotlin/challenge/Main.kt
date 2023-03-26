@@ -1,5 +1,10 @@
 package pt.ulusofona.cm.kotlin.challenge
 
-fun main(){
+import java.util.*
 
+
+fun main(){
+    var teste= Date()
+
+    println(teste)
 }
