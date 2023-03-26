@@ -74,6 +74,6 @@ class Pessoa(var nome: String, var dataDeNascimento: Date) {
     }
 
     override fun toString(): String{
-        return "Pessoa | $nome | $dataDeNascimento | $posicao"
+        return "Pessoa | $nome | ${dataDeNascimento.day}-${dataDeNascimento.month}-${dataDeNascimento.year} | $posicao"
     }
 }
