@@ -6,6 +6,6 @@ class Bicicleta(identificador: String) : Veiculo(identificador) {
     }
 
     override fun toString(): String{
-        return "Bicicleta | $identificador | $${dataDeAquisicao.day}-${dataDeAquisicao.month}-${dataDeAquisicao.year} | $posicao"
+        return "Bicicleta | $identificador | ${dataDeAquisicao.day}-${dataDeAquisicao.month}-${dataDeAquisicao.year} | $posicao"
     }
 }
