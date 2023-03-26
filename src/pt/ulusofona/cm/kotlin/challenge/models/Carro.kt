@@ -8,9 +8,9 @@ class Carro(identificador: String, var motor: Motor) : Veiculo(identificador), L
         return true
     }
 
-    override fun ligar() {}
+    override fun ligar() {motor.ligar()}
 
-    override fun desligar() {}
+    override fun desligar() {motor.desligar()}
 
     override fun estaLigado(): Boolean {return motor.estaLigado()}
 

@@ -18,7 +18,7 @@ class Pessoa(var nome: String, var dataDeNascimento: Date) {
         val localDate = LocalDate.now()
         val localDateTime = localDate.atStartOfDay()
         val data = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant())
-        veiculo.dataDeAquisicao= data
+        veiculo.dataDeAquisicao= Date(data.year,data.month,data.day)
         veiculos.add(veiculo)
     }
 
