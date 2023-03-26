@@ -16,9 +16,7 @@ class Pessoa(var nome: String, var dataDeNascimento: Date) {
 
     fun comprarVeiculo(veiculo: Veiculo){
         val localDate = LocalDate.now()
-        val localDateTime = localDate.atStartOfDay()
-        val data = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant())
-        veiculo.dataDeAquisicao= Date(data.year,data.month,data.day)
+        veiculo.dataDeAquisicao= Date(localDate.year,localDate.monthValue,localDate.dayOfMonth)
         veiculos.add(veiculo)
     }
 
