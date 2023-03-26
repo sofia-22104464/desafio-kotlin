@@ -4,7 +4,7 @@ import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoDesligadoException
 import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoLigadoException
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Ligavel
 
-class Motor(private var cavalos: Int, private var cilindrada: Int): Ligavel {
+class Motor(var cavalos: Int, var cilindrada: Int): Ligavel {
     private var ligado: Boolean = false
 
     override fun ligar() {
