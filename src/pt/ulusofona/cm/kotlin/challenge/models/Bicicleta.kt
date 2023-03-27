@@ -6,6 +6,8 @@ class Bicicleta(identificador: String) : Veiculo(identificador) {
     }
 
     override fun toString(): String{
-        return "Bicicleta | $identificador | ${dataDeAquisicao.day}-${dataDeAquisicao.month}-${dataDeAquisicao.year} | $posicao"
+        var dia= String.format("%02d",dataDeAquisicao.date)
+        var mes= String.format("%02d",dataDeAquisicao.month)
+        return "Bicicleta | $identificador | $dia-$mes-${dataDeAquisicao.year} | $posicao"
     }
 }
