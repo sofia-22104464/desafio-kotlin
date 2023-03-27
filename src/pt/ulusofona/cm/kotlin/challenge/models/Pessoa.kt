@@ -4,6 +4,7 @@ import pt.ulusofona.cm.kotlin.challenge.exceptions.MenorDeIdadeException
 import pt.ulusofona.cm.kotlin.challenge.exceptions.PessoaSemCartaException
 import pt.ulusofona.cm.kotlin.challenge.exceptions.VeiculoNaoEncontradoException
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Period
 import java.util.*
@@ -16,8 +17,7 @@ class Pessoa(var nome: String, var dataDeNascimento: Date): Movimentavel {
 
 
     fun comprarVeiculo(veiculo: Veiculo){
-        val localDate = LocalDate.now()
-        veiculo.dataDeAquisicao= Date(localDate.year,localDate.monthValue,localDate.dayOfMonth)
+        veiculo.dataDeAquisicao= Calendar.getInstance().time
         veiculos.add(veiculo)
     }
 
@@ -77,8 +77,8 @@ class Pessoa(var nome: String, var dataDeNascimento: Date): Movimentavel {
     }
 
     override fun toString(): String{
-        var dia= String.format("%02d",dataDeNascimento.date)
-        var mes= String.format("%02d",dataDeNascimento.month)
-        return "Pessoa | $nome | $dia-$mes-${dataDeNascimento.year} | $posicao"
+        val formatter = SimpleDateFormat("dd-MM-yyyy")
+        val current = formatter.format(dataDeNascimento)
+        return "Pessoa | $nome | $current | $posicao"
     }
 }
