@@ -7,6 +7,7 @@ import pt.ulusofona.cm.kotlin.challenge.interfaces.Movimentavel
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Period
+import java.time.temporal.ChronoUnit
 import java.util.*
 
 
@@ -65,7 +66,7 @@ class Pessoa(var nome: String, var dataDeNascimento: Date): Movimentavel {
     }
 
     fun tirarCarta(){
-        if(Period.between(LocalDate.of(dataDeNascimento.year,dataDeNascimento.month,dataDeNascimento.day), LocalDate.now()).years < 18){
+        if(Period.between(LocalDate.of(dataDeNascimento.year,dataDeNascimento.month + 1,dataDeNascimento.date), LocalDate.now()).years < 18){
             throw MenorDeIdadeException("Não pode tirar a carta visto que é menor!")
         }else{
             this.carta= Carta()
