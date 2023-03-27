@@ -1,13 +1,15 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
+import java.text.SimpleDateFormat
+
 class Bicicleta(identificador: String) : Veiculo(identificador) {
     override fun requerCarta(): Boolean{
         return false
     }
 
     override fun toString(): String{
-        var dia= String.format("%02d",dataDeAquisicao.date)
-        var mes= String.format("%02d",dataDeAquisicao.month)
-        return "Bicicleta | $identificador | $dia-$mes-${dataDeAquisicao.year} | $posicao"
+        val formatter = SimpleDateFormat("dd-MM-yyyy")
+        val current = formatter.format(dataDeAquisicao)
+        return "Bicicleta | $identificador | $current | $posicao"
     }
 }

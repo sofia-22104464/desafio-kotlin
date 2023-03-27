@@ -1,6 +1,7 @@
 package pt.ulusofona.cm.kotlin.challenge.models
 
 import pt.ulusofona.cm.kotlin.challenge.interfaces.Ligavel
+import java.text.SimpleDateFormat
 
 class Carro(identificador: String, var motor: Motor) : Veiculo(identificador), Ligavel {
 
@@ -15,8 +16,8 @@ class Carro(identificador: String, var motor: Motor) : Veiculo(identificador), L
     override fun estaLigado(): Boolean {return motor.estaLigado()}
 
     override fun toString(): String{
-        var dia= String.format("%02d",dataDeAquisicao.date)
-        var mes= String.format("%02d",dataDeAquisicao.month)
-        return "Carro | $identificador | $dia-$mes-${dataDeAquisicao.year} | $posicao"
+        val formatter = SimpleDateFormat("dd-MM-yyyy")
+        val current = formatter.format(dataDeAquisicao)
+        return "Carro | $identificador | $current | $posicao"
     }
 }
