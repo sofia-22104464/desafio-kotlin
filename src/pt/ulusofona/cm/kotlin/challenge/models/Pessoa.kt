@@ -14,6 +14,7 @@ class Pessoa(var nome: String, var dataDeNascimento: Date): Movimentavel {
     var carta: Carta? = null
     var posicao= Posicao(0,0)
 
+
     fun comprarVeiculo(veiculo: Veiculo){
         val localDate = LocalDate.now()
         veiculo.dataDeAquisicao= Date(localDate.year,localDate.monthValue,localDate.dayOfMonth)
@@ -76,6 +77,8 @@ class Pessoa(var nome: String, var dataDeNascimento: Date): Movimentavel {
     }
 
     override fun toString(): String{
-        return "Pessoa | $nome | ${dataDeNascimento.day}-${dataDeNascimento.month}-${dataDeNascimento.year} | $posicao"
+        var dia= String.format("%02d",dataDeNascimento.date)
+        var mes= String.format("%02d",dataDeNascimento.month)
+        return "Pessoa | $nome | $dia-$mes-${dataDeNascimento.year} | $posicao"
     }
 }
